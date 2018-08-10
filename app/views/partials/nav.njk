@@ -1,0 +1,32 @@
+<nav id="main">
+    <div class="header">
+        <strong>Minhas bibliotecas</strong>
+        <a href="/signout">Sair</a>
+    </div>
+
+    <div class="categories">
+        <strong>CATEGORIAS</strong>
+
+        <ul>
+            {% for category in categories %}
+                <li class="{% if category.id == activeCategory %}active{% endif %}">
+                    <a href="/app/categories/{{ category.id }}">
+                        {{ category.title }}
+                        <span>{{ category.Snippets.length }}</span>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <a href="#" data-modal-open="#new-category">NOVA CATEGORIA</a>
+    </div>
+</nav>
+
+<div class="modal" id="new-category">
+    <form class="modal-content" method="POST" action="/app/categories/create">
+        <input type="text" name="title" placeholder="Título da categoria">
+
+        <button type="submit">SALVAR CATEGORIA</button>
+        <a href="#" data-modal-close="#new-category">CANCELAR</a>
+    </form>
+</div>
